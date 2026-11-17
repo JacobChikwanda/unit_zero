@@ -1,0 +1,39 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Environment and local secrets
+.env
+.env.*
+!.env.example
+
+# TypeScript / test / coverage
+*.tsbuildinfo
+coverage
+playwright-report
+test-results
+
+# Blueprint generated run state (keep workflow files; ignore live run pointer noise)
+blueprint/.state/run.json
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db

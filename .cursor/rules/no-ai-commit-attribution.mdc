@@ -1,0 +1,12 @@
+---
+description: Never add Cursor or other AI commit/PR attribution trailers
+alwaysApply: true
+---
+
+# No AI commit or PR attribution
+
+Never add `Co-authored-by: Cursor <cursoragent@cursor.com>`, `Made-with: Cursor`, `Made with Cursor`, `Co-Authored-By` AI trailers, or generated-by signatures to commits or pull requests.
+
+- Do not pass `--trailer` with Cursor or other AI attribution on `git commit`
+- Preserve genuine human co-authors only
+- Prefer commits whose message body contains only the intended human-authored text
