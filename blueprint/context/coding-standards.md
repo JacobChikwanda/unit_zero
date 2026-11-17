@@ -155,6 +155,7 @@ Over-commenting is a common AI tell, so resist it.
   READMEs, specs. They read as AI-generated.
 - Use a hyphen for `term - description` separators; rephrase prose with commas,
   parentheses, or a colon. Avoid en dashes and the ellipsis character too.
+- Game content (dialogue, labels, notices) copied from docs/ or a chapter spec is kept verbatim, punctuation included.
 
 ## Never, without explicit approval
 - Invent dialogue, characters, story events, hints or learning goals.
@@ -168,7 +169,7 @@ Over-commenting is a common AI tell, so resist it.
 - Keep three layers separate: adventure (components/, chapters/), learning activities (activities/), progression (game/).
 - Activities receive a problem as props and report a result through a callback. They never touch story state or saves directly.
 - Chapter folders hold content and configuration, not engine code.
-- Learning logic (answer checking, solvers, generators) is plain - TypeScript with no React, so it can be tested.
+- Learning logic (answer checking, solvers, generators) is plain TypeScript with no React, so it can be tested.
 - No giant components. If a component does more than one job, split it.
 - Every activity has Vitest tests for correct answers, each known wrong answer and its feedback, and edge cases.
 - Every solver reproduces the worked examples given in the spec as tests.
