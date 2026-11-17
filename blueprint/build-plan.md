@@ -1,22 +1,15 @@
 # Build Plan
 
-List the features that make up your project, high level and in rough build order.
-Keep each item to one line; the details come later in `/feature`.
+Features in rough build order. Details come later in `/feature`, which must follow
+`project-plan.md` and `docs/01_GAME_DESIGN_PLAN.md`. Chapter features are added only after
+that chapter's gameplay spec is approved and saved in `docs/chapters/`.
 
-Plain bullets are fine. When both planning docs are ready, run `/overview`.
-It adds tracking numbers and checkboxes to your feature list before generating
-the project overview.
-
-Run `/feature` to spec the next unchecked item, or `/feature 2` to pick one.
-Keep completed items checked and append new features as the project grows.
-Do not renumber completed features; their archived specs refer to those IDs.
-
-Scaffolding the app and prototyping its look are pre-build steps, not features.
-Start with your first real slice of functionality.
+Pre-build (not features): scaffold, test setup (`/tests`), docs folder.
 
 ## Your features
 
-Replace these examples with your own features:
-
-- [ ] 1. **Feature one** - description
-- [ ] 2. **Feature two** - description
+- [ ] 1. **Save system** - versioned player save behind a `SaveStore` interface, localStorage first, safe fallback on missing or corrupt data
+- [ ] 2. **Layout and navigation** - title screen to scene view, 1-bit CSS base and fonts, phone and desktop widths
+- [ ] 3. **Scene with hotspots** - background image plus clickable, keyboard-reachable hotspots defined in config
+- [ ] 4. **Dialogue** - scripted lines by speaker with simple branching choices and end events, logic separate from the component
+- [ ] 5. **Progression model** - chapter and Ore/Smelt/Refine states, unlock order, mastery chips, upgrades, saved through the save system
