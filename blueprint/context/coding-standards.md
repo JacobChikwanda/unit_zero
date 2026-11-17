@@ -154,3 +154,24 @@ Over-commenting is a common AI tell, so resist it.
   READMEs, specs. They read as AI-generated.
 - Use a hyphen for `term - description` separators; rephrase prose with commas,
   parentheses, or a colon. Avoid en dashes and the ellipsis character too.
+
+## Never, without explicit approval
+- Invent dialogue, characters, story events, hints or learning goals.
+- Change correct answers, tolerances, scoring, mastery rules or unlock conditions.
+- Change any AI explanation, formula or worked number.
+- Add dependencies, a backend, a game engine or a state library.
+- Build features outside the current task.
+
+## Code rules
+- TypeScript strict mode. No any unless justified in a comment.
+- Keep three layers separate: adventure (components/, chapters/), learning activities (activities/), progression (game/).
+- Activities receive a problem as props and report a result through a callback. They never touch story state or saves directly.
+- Chapter folders hold content and configuration, not engine code.
+- Learning logic (answer checking, solvers, generators) is plain - TypeScript with no React, so it can be tested.
+- No giant components. If a component does more than one job, split it.
+- Every activity has Vitest tests for correct answers, each known wrong answer and its feedback, and edge cases.
+- Every solver reproduces the worked examples given in the spec as tests.
+- Generators must pass their property checks across many seeds in tests.
+- Visual style: pure black on white, pixel font for the world, KaTeX for formulas. Meaning never depends on colour.
+- Scenes are background images with absolutely positioned HTML hotspots. No canvas unless approved.
+- Save progress with a versioned schema in localStorage, through game/save/ only.

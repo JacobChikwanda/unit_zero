@@ -92,3 +92,12 @@ runner and update this section with the real test commands.
 Browser testing is also opt-in. Run `/tests browser` to add or normalize a
 browser harness and document its exact command as `Browser tests`. Check and
 Continuous Mode can then reuse it without installing tooling mid-feature.
+
+## Unit Zero rules
+- The game design is in docs/01_GAME_DESIGN_PLAN.md. Chapter specs are in docs/chapters/. Follow them exactly.
+- Never invent dialogue, characters, story events, hints or learning goals.
+- Never change correct answers, tolerances, scoring, mastery rules, unlock conditions, formulas, explanations or worked numbers. If one looks wrong, stop and report it.
+- No new dependencies, backend, game engine or state library without approval.
+- Keep three layers separate: adventure (components/, chapters/), learning activities (activities/), progression (game/).
+- Learning logic is plain TypeScript, outside React, with Vitest tests for correct answers, known wrong answers and edge cases.
+- Coding standards: blueprint/context/coding-standards.md.
