@@ -40,12 +40,12 @@ Later, not MVP: chapters 2–19 and the finale, problem generators for calculati
 **Player save** (on the device, versioned schema):
 - Chapter states, and per-challenge states for Ore, Smelt and Refine (locked, available, passed)
 - Mastery chips per concept (dark, outline, half-lit, lit, refined)
-- Upgrades owned, player rank
+- Upgrades owned. Player rank is not stored: it is derived from chapter progress.
 - Unlocked locations and map markers
 - Clues in Zero's notebook, story flags, and choices that change the story
 - Unlocked voice logs
 
-**Settings:** text size, sound on or off (later).
+**Settings:** text size, sound on or off. Deferred: not in the v1 save. Added when a settings UI exists.
 
 **Game content is not stored data.** Chapters, dialogue, activities, answers, hints and explanations are TypeScript files in the repo: typed, reviewable in git diffs and tested. Learning content changes in the chapter spec first, then in code.
 
