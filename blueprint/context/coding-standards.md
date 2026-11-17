@@ -26,12 +26,12 @@
 - Do not add a second bundler or framework layer without a current requirement
 
 ## File Organization
-
-- App entry: `src/main.tsx`, root UI in `src/App.tsx`
-- Components: `src/components/[feature]/ComponentName.tsx` when the app grows past the scaffold
-- Types: `src/types/[feature].ts` when shared types appear
-- Lib/Utils: `src/lib/[utility].ts` when shared helpers appear
-- > TODO: refine folders once routing, data access, or feature modules exist
+- Entry: `src/main.tsx`, root UI in `src/App.tsx`
+- Adventure: `src/components/<Name>/` (Scene, Dialogue, GameLayout, Progress) and `src/chapters/chapter-NN/` (content and config only)
+- Learning activities: `src/activities/<Name>/`
+- Progression and saves: `src/game/progression/`, `src/game/save/`
+- Shared types live next to the layer that owns them. No `src/lib/` or `src/types/`.
+- Create a folder only when the current feature needs it.
 
 ## Naming
 
@@ -101,9 +101,10 @@ of the switch; the skills and `ai-interaction.md` only point back here.
 - Run them via the project's test command (see Commands in `AGENTS.md`), not a
   hardcoded tool name.
 
-Stack binding for this app: when tests are added, prefer Vitest with
-`vi.mock()` for external dependencies and `vi.useFakeTimers()` for
-time-dependent logic.
+Stack binding: Vitest (`pnpm test` / `pnpm test:watch`), node environment for
+plain TypeScript learning logic. Use `vi.mock()` for external dependencies and
+`vi.useFakeTimers()` for time-dependent logic. Test files live next to source
+as `*.test.ts`.
 
 ## Browser Verification
 

@@ -85,7 +85,7 @@ Game content (chapters, dialogue, activities, answers) is TypeScript in the repo
 - **Plain CSS** - 1-bit look and simple animation
 - **HTML hotspots on background images** - scenes; no canvas at start
 - **KaTeX** - formulas when first needed
-- **Vitest** - learning logic and solvers (runner still pre-build `/tests`)
+- **Vitest** - unit tests for learning logic and solvers (`pnpm test`)
 - **No** backend, DB server, game engine, router, or state library
 
 Layers: adventure (`src/components/`, `src/chapters/`) · activities (`src/activities/`) · progression (`src/game/`).
@@ -120,5 +120,4 @@ Screens (no router library; app-owned view state):
 
 - Host not chosen
 - Build plan is foundation-only; project-plan MVP also lists learning activities, brain-map UI, voice logs, and Chapter 1 content - add those as numbered features after chapter specs land (expected, not a conflict)
-- Vitest named in the plan but no `test` command in `AGENTS.md` yet (pre-build `/tests`)
 - Settings fields (text size, sound) deferred; leave optional on `PlayerSave` until built

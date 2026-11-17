@@ -14,16 +14,7 @@ for Cursor, Claude Code, and optional tool settings.
 
 ## What this is
 
-A description of your project and the problem it solves.
-
-This project is built with the **AI Blueprint**, a workflow layer, not an
-app skeleton. To start a new project, scaffold the app first in an empty folder
-(create-next-app, Vite, etc.), then overlay these files on top. Never run a
-framework scaffolder inside a directory that already holds the blueprint files
-(`AGENTS.md`, `.agents/`, `blueprint/`); it fails because the directory isn't
-empty.
-
-The workflow is defined by the local skills and context files below.
+Unit Zero: a 1-bit black-and-white web adventure game that teaches AI, set in Ndola and the Copperbelt. Static Vite + React + TypeScript SPA, no backend. Full design: docs/01_GAME_DESIGN_PLAN.md.
 
 ## Proportional engineering
 
@@ -85,13 +76,11 @@ explicit-only `autopilot` and `continuous`.
 - Build: `pnpm build`
 - Preview: `pnpm preview`
 - Lint: `pnpm lint`
+- Test: `pnpm test`
+- Test watch: `pnpm test:watch`
 
-No unit test command is configured yet. Testing is opt-in; run `/tests` to add a
-runner and update this section with the real test commands.
-
-Browser testing is also opt-in. Run `/tests browser` to add or normalize a
-browser harness and document its exact command as `Browser tests`. Check and
-Continuous Mode can then reuse it without installing tooling mid-feature.
+Tests are a gate for logic-bearing steps. Browser testing is still opt-in; run
+`/tests browser` to add a harness and document it as `Browser tests`.
 
 ## Unit Zero rules
 - The game design is in docs/01_GAME_DESIGN_PLAN.md. Chapter specs are in docs/chapters/. Follow them exactly.
