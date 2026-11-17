@@ -1,0 +1,42 @@
+.title-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  flex: 1;
+  gap: 24px;
+  padding: 24px 16px;
+  text-align: center;
+  font-family: var(--font-world);
+}
+
+.title-screen__name {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.title-screen__line {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.title-screen__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+  width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.title-screen__button {
+  min-height: 44px;
+  padding: 8px 16px;
+  font-family: var(--font-world);
+  font-size: 16px;
+  line-height: 1;
+}
