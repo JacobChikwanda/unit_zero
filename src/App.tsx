@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { demoScene } from './chapters/demoScene'
 import { GameLayout } from './components/GameLayout/GameLayout'
 import { Scene } from './components/Scene/Scene'
 import { TitleScreen } from './components/TitleScreen/TitleScreen'
@@ -11,6 +12,7 @@ const saveStore = createLocalStorageSaveStore()
 
 function App() {
   const [view, setView] = useState<AppView>('title')
+  const [, setLastHotspotId] = useState<string | null>(null)
   const canContinue = saveStore.load() !== null
 
   useEffect(() => {
@@ -30,7 +32,10 @@ function App() {
           onContinue={goToScene}
         />
       ) : (
-        <Scene />
+        <Scene
+          config={demoScene}
+          onHotspotActivate={setLastHotspotId}
+        />
       )}
     </GameLayout>
   )
