@@ -1,0 +1,15 @@
+.scene-play {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+.scene-play .scene {
+  flex: 1;
+}
+
+.scene-play--with-dialogue .scene {
+  flex: 0 0 auto;
+}

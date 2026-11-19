@@ -4,14 +4,20 @@ import './Scene.css'
 export type SceneProps = {
   config: SceneConfig
   onHotspotActivate: (hotspotId: string) => void
+  inert?: boolean
 }
 
-export function Scene({ config, onHotspotActivate }: SceneProps) {
+export function Scene({
+  config,
+  onHotspotActivate,
+  inert = false,
+}: SceneProps) {
   return (
     <section className="scene" aria-label="Scene">
       <div
         className="scene__frame"
         style={{ aspectRatio: `${config.width} / ${config.height}` }}
+        {...(inert ? { inert: true } : {})}
       >
         <img
           className="scene__background"
@@ -26,6 +32,7 @@ export function Scene({ config, onHotspotActivate }: SceneProps) {
             key={hotspot.id}
             type="button"
             className="scene__hotspot"
+            data-hotspot-id={hotspot.id}
             aria-label={hotspot.label}
             style={{
               left: `${hotspot.left}%`,
