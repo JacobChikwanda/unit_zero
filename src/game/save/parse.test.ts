@@ -13,9 +13,8 @@ describe('parsePlayerSave', () => {
       ...createDefaultPlayerSave(),
       upgrades: ['antenna'],
       chapterStates: {
-        '1': {
-          status: 'in_progress',
-          challenges: { ore: 'passed', smelt: 'available', refine: 'locked' },
+        ch01: {
+          challenges: { ore: true, smelt: false, refine: false },
         },
       },
       conceptChips: { 'prob.bayes': { level: 'half_lit' } },
@@ -67,13 +66,26 @@ describe('parsePlayerSave', () => {
     expect(parsePlayerSave(save)).toBeNull()
   })
 
-  it("rejects an otherwise valid save with challenges.smelt: 'won'", () => {
+  it('rejects chapter state that still includes status', () => {
     const save = {
       ...createDefaultPlayerSave(),
       chapterStates: {
-        '1': {
-          status: 'in_progress',
-          challenges: { ore: 'passed', smelt: 'won', refine: 'locked' },
+        ch01: {
+          status: 'available',
+          challenges: { ore: true, smelt: false, refine: false },
+        },
+      },
+    }
+
+    expect(parsePlayerSave(save)).toBeNull()
+  })
+
+  it('rejects string challenge statuses', () => {
+    const save = {
+      ...createDefaultPlayerSave(),
+      chapterStates: {
+        ch01: {
+          challenges: { ore: 'passed', smelt: false, refine: false },
         },
       },
     }

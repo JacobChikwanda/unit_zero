@@ -1,26 +1,11 @@
 import { CURRENT_SCHEMA_VERSION } from './defaults'
 import type {
-  ChallengeStatus,
   ChapterState,
-  ChapterStatus,
   ChipLevel,
   ChipState,
   LocationState,
   PlayerSave,
 } from './types'
-
-const CHAPTER_STATUSES = new Set<ChapterStatus>([
-  'locked',
-  'available',
-  'in_progress',
-  'completed',
-])
-
-const CHALLENGE_STATUSES = new Set<ChallengeStatus>([
-  'locked',
-  'available',
-  'passed',
-])
 
 const CHIP_LEVELS = new Set<ChipLevel>([
   'dark',
@@ -38,19 +23,12 @@ function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((item) => typeof item === 'string')
 }
 
-function parseChallengeStatus(value: unknown): ChallengeStatus | null {
-  return typeof value === 'string' && CHALLENGE_STATUSES.has(value as ChallengeStatus)
-    ? (value as ChallengeStatus)
-    : null
-}
-
 function parseChapterState(value: unknown): ChapterState | null {
   if (!isPlainObject(value)) {
     return null
   }
 
-  const status = value.status
-  if (typeof status !== 'string' || !CHAPTER_STATUSES.has(status as ChapterStatus)) {
+  if ('status' in value) {
     return null
   }
 
@@ -58,15 +36,16 @@ function parseChapterState(value: unknown): ChapterState | null {
     return null
   }
 
-  const ore = parseChallengeStatus(value.challenges.ore)
-  const smelt = parseChallengeStatus(value.challenges.smelt)
-  const refine = parseChallengeStatus(value.challenges.refine)
-  if (ore === null || smelt === null || refine === null) {
+  const { ore, smelt, refine } = value.challenges
+  if (
+    typeof ore !== 'boolean' ||
+    typeof smelt !== 'boolean' ||
+    typeof refine !== 'boolean'
+  ) {
     return null
   }
 
   return {
-    status: status as ChapterStatus,
     challenges: { ore, smelt, refine },
   }
 }

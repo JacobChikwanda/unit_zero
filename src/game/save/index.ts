@@ -6,9 +6,7 @@ export {
   type SaveStore,
 } from './save-store'
 export type {
-  ChallengeStatus,
   ChapterState,
-  ChapterStatus,
   ChipLevel,
   ChipState,
   LocationState,

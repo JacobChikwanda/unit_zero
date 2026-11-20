@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react'
 import { demoDialogue, demoSpeakers } from './chapters/demoDialogue'
+import { demoEventMap } from './chapters/demoProgression'
 import { demoScene } from './chapters/demoScene'
 import { Dialogue } from './components/Dialogue/Dialogue'
 import { GameLayout } from './components/GameLayout/GameLayout'
 import { Scene } from './components/Scene/Scene'
 import { TitleScreen } from './components/TitleScreen/TitleScreen'
-import { createLocalStorageSaveStore } from './game/save'
+import { applyEvent } from './game/progression'
+import {
+  createDefaultPlayerSave,
+  createLocalStorageSaveStore,
+  type PlayerSave,
+} from './game/save'
 import { GAME_TITLE } from './gameTitle'
 import './App.css'
 
@@ -28,8 +34,11 @@ function App() {
   const [dialogueHotspotId, setDialogueHotspotId] = useState<
     string | null
   >(null)
-  const [, setLastEvent] = useState<string | null>(null)
-  const canContinue = saveStore.load() !== null
+  const [playerSave, setPlayerSave] = useState<PlayerSave | null>(() =>
+    saveStore.load(),
+  )
+  const [saveError, setSaveError] = useState<string | null>(null)
+  const canContinue = playerSave !== null
 
   useEffect(() => {
     document.title = GAME_TITLE
@@ -46,12 +55,27 @@ function App() {
     }
   }
 
+  function persistEvent(event: string) {
+    const base = playerSave ?? createDefaultPlayerSave()
+    const next = applyEvent(base, demoEventMap, event)
+    if (next === base) {
+      return
+    }
+
+    setPlayerSave(next)
+    if (!saveStore.save(next)) {
+      setSaveError('Progress wasn’t saved.')
+      return
+    }
+    setSaveError(null)
+  }
+
   function handleDialogueEvent(event: string) {
-    setLastEvent(event)
+    persistEvent(event)
   }
 
   function handleDialogueEnd(event: string) {
-    setLastEvent(event)
+    persistEvent(event)
     const returnHotspotId = dialogueHotspotId
     setDialogueOpen(false)
     setDialogueHotspotId(null)
@@ -64,6 +88,11 @@ function App() {
 
   return (
     <GameLayout>
+      {saveError ? (
+        <p className="save-error" role="status" aria-live="polite">
+          {saveError}
+        </p>
+      ) : null}
       {view === 'title' ? (
         <TitleScreen
           canContinue={canContinue}

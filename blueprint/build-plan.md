@@ -12,4 +12,4 @@ Pre-build (not features): scaffold, test setup (`/tests`), docs folder.
 - [x] 2. **Layout and navigation** - title screen to scene view, 1-bit CSS base and fonts, phone and desktop widths
 - [x] 3. **Scene with hotspots** - background image plus clickable, keyboard-reachable hotspots defined in config
 - [x] 4. **Dialogue** - scripted lines by speaker with simple branching choices and end events, logic separate from the component
-- [ ] 5. **Progression model** - chapter and Ore/Smelt/Refine states, unlock order, mastery chips, upgrades, saved through the save system
+- [x] 5. **Progression model** - chapter and Ore/Smelt/Refine states, unlock order, mastery chips, upgrades, saved through the save system

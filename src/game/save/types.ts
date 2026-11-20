@@ -1,15 +1,10 @@
-export type ChallengeStatus = 'locked' | 'available' | 'passed'
-
-export type ChapterStatus = 'locked' | 'available' | 'in_progress' | 'completed'
-
 export type ChipLevel = 'dark' | 'outline' | 'half_lit' | 'lit' | 'refined'
 
 export interface ChapterState {
-  status: ChapterStatus
   challenges: {
-    ore: ChallengeStatus
-    smelt: ChallengeStatus
-    refine: ChallengeStatus
+    ore: boolean
+    smelt: boolean
+    refine: boolean
   }
 }
 

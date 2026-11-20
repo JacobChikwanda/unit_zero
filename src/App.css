@@ -1,3 +1,13 @@
+.save-error {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  border-bottom: 1px solid var(--color-ink);
+}
+
 .scene-play {
   display: flex;
   flex-direction: column;
