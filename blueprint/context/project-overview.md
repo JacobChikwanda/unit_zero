@@ -23,15 +23,15 @@ AI is often taught as formulas without problems that force use. Unit Zero is a b
 
 ## Features
 
-Foundation first (current build plan). Chapter content and learning activities land after chapter specs exist in `docs/chapters/`. Full design: `docs/01_GAME_DESIGN_PLAN.md`.
+Foundation first (current build plan). Chapter content and learning activities land after chapter specs exist in `docs/chapters/`. Full design: `docs/01_GAME_DESIGN_PLAN.md`. Design plan wins if it disagrees with this overview on story or pedagogy.
 
 1. **Save system** (done) - versioned `PlayerSave` behind `SaveStore`; localStorage first; safe null fallback on missing/corrupt data; `save` returns boolean
 2. **Layout and navigation** (done) - title → scene view state; 1-bit CSS tokens; Silkscreen world font + `system-ui` reading font; `GAME_TITLE`; Start always, Continue omitted when no save; phone/desktop check widths
 3. **Scene with hotspots** (done) - config-driven fixed-aspect background + keyboard-reachable labeled HTML hotspots; `onHotspotActivate`; demo Region A/B
 4. **Dialogue** (done) - scripted lines by speaker, branching choices, end events; pure engine + validator; panel below the scene; parent owns `onEvent` / `onEnd`
-5. **Progression model** - pure `src/game/progression/`; store facts, derive chapter/challenge availability and rank; typed effects + `applyEvent`; demo end event persists a story flag
+5. **Progression model** (done) - pure `src/game/progression/`; store facts, derive chapter/challenge availability and rank; typed effects + `applyEvent`; demo end event persists a story flag
 
-Later (project plan, not yet in build plan): Chapter 1 opening + rest of Ch 1, reusable activities, voice logs, Ch 2–19, generators, Morning Shift, workshops, offline, sound.
+Later (project plan MVP / design, not yet in build plan): Chapter 1 opening + rest of Ch 1, reusable learning activities, brain-map UI, Zero upgrade visuals, voice logs, Ch 2–19, generators, Morning Shift, workshops, offline, sound.
 
 ## Data model
 
@@ -51,13 +51,13 @@ Shipped schemaVersion `1` (`CURRENT_SCHEMA_VERSION`). Deep-validated on load; on
 - `choiceFlags` (Record<string, string>) - story-affecting decisions
 - `unlockedVoiceLogIds` (string[])
 
-Not on the save (derive only): chapter status, challenge locked/available, and `rank` (from completed-chapter count; design plan §3). `settings` deferred until a settings UI exists.
+Not on the save (derive only): chapter status, challenge locked/available, and `rank` (from completed-chapter count). `settings` (text size, sound) deferred until a settings UI exists.
 
-> Feature 5 owns progression fields and may change v1 directly until the first playtest creates real player saves. Add migrations only after that.
+> v1 may still change in place until the first playtest creates real player saves. Add migrations only after that.
 
 ### ChapterState
 
-- `challenges` - `{ ore, smelt, refine }: boolean` — `true` means that challenge was passed
+- `challenges` - `{ ore, smelt, refine }: boolean` - `true` means that challenge was passed
 - No stored `status` or `in_progress`
 
 ### Derived progression (`src/game/progression/`)
@@ -66,12 +66,13 @@ Not on the save (derive only): chapter status, challenge locked/available, and `
 - Chapter status: `locked` | `available` | `completed` (available when previous in order is completed; `ch01` starts available; completed when refine is passed)
 - Challenge availability: ore when chapter available/completed; smelt after ore; refine after smelt; already-passed → `passed`
 - Rank: Apprentice 0–3 completed chapters, Technician 4–8, Engineer 9–13, Architect 14+
-- Typed `Effect` union applied by pure `applyEffect(save, effect)`; content maps event names to `Effect[]` via `applyEvent(save, eventMap, event)` (unknown event = no-op)
+- Typed `Effect` union via pure `applyEffect(save, effect)`; content maps event names to `Effect[]` via `applyEvent` (unknown event = no-op)
+- `raiseChip` sets level to the higher of current (absent = dark) and `to` on CHIP_LADDER
 - App applies effects then `SaveStore.save()`; `false` → short “progress wasn’t saved” message
 
 ### ChipState
 
-- `level` (dark | outline | half_lit | lit | refined) - brain-map mastery chip; `raiseChip` sets level to the higher of current (absent = dark) and `to` on CHIP_LADDER
+- `level` (dark | outline | half_lit | lit | refined) - brain-map mastery chip
 
 ### LocationState
 
@@ -133,4 +134,5 @@ Screens (no router library; app-owned view state `'title' | 'scene'`):
 
 - Host not chosen
 - Final product name (`GAME_TITLE` is `Unit Zero`; Copper Mind still a candidate)
-- Build plan is foundation-only; project-plan MVP also lists learning activities, brain-map UI, voice logs, and Chapter 1 content — add those as numbered features after chapter specs land (expected gap, not a conflict)
+- Build plan is foundation-only; project-plan MVP also lists learning activities, brain-map UI, voice logs, and Chapter 1 content — add those as numbered features after chapter specs land (expected gap)
+- project-plan §4 still describes Ore/Smelt/Refine as stored locked/available/passed; shipped Feature 5 stores passed booleans only and derives the rest — update the project plan when convenient so the two plans match

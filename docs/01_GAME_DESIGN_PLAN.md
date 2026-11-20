@@ -141,7 +141,7 @@ The Chrome dino game is the style reference only: simple, fast, no clutter.
 
 - **1-bit.** Pure black on white. No colour, no gradients.
 - **Pixel sprites.** Zero is a 16×16 sprite. Townspeople are 12×12. Buildings are outlines.
-- **One ground line.** Grayford scrolls side to side along it. You walk Zero between buildings.
+- **One ground line.** Ndola scrolls side to side along it. You walk Zero between buildings.
 - **Meaning without colour.** Right = solid fill. Wrong = inverted flash. Uncertain = dotted outline. Active = blinking.
 - **Chunky pixel font** for the world, a clean font for formulas (KaTeX).
 - **Tiny sounds.** Blip for a correct step, buzz for a wrong one. Mute by default.
@@ -399,7 +399,7 @@ The order follows your notes. Each chapter has a place in Ndola or the Copperbel
 - Ore: compute Q updates on a small grid. Terminal tiles have no future value.
 - Smelt: tune the discount and exploration rate. Too little exploring and Zero gets stuck on a poor route.
 - Refine: a flooded shaft sits next to the shortest path. Compare Q-learning and SARSA: which is safer while it learns, and why? This is the policy Zero will need at the dam.
-- Upgrade: Habit Engine.
+- Upgrade: Habit Engine. Rank: Architect.
 
 ### Act IV — The deep mind
 
@@ -410,7 +410,7 @@ The order follows your notes. Each chapter has a place in Ndola or the Copperbel
 - Ore: wire neurons into an XOR gate. See why one neuron can't do it.
 - Smelt: one forward and one backward pass by hand. Update the weights.
 - Refine: size a network for a real task, count its parameters, and diagnose a training run that stalls.
-- Upgrade: Neural Core. Rank: Architect.
+- Upgrade: Neural Core.
 
 **Ch 16. Learning to See** — *Computer vision and CNNs* · President Avenue
 

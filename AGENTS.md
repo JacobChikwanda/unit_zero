@@ -90,3 +90,4 @@ Tests are a gate for logic-bearing steps. Browser testing is still opt-in; run
 - Keep three layers separate: adventure (components/, chapters/), learning activities (activities/), progression (game/).
 - Learning logic is plain TypeScript, outside React, with Vitest tests for correct answers, known wrong answers and edge cases.
 - Coding standards: blueprint/context/coding-standards.md.
+- Never push. Commit and merge locally only. Jacob pushes.
