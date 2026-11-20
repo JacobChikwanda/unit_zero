@@ -163,6 +163,8 @@ Over-commenting is a common AI tell, so resist it.
 - Change any AI explanation, formula or worked number.
 - Add dependencies, a backend, a game engine or a state library.
 - Build features outside the current task.
+- If the spec is unclear or seems wrong, stop and ask. Don't guess.
+- In /check, compare the result with the spec line by line and list any gaps.
 
 ## Code rules
 - TypeScript strict mode. No any unless justified in a comment.
